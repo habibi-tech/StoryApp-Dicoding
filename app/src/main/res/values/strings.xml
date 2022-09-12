@@ -50,4 +50,7 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="field_name">Nama</string>
+    <string name="field_email">Email</string>
+    <string name="field_password">Password</string>
 </resources>
