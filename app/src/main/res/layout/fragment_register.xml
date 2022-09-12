@@ -1,9 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.authentication.register.RegisterFragment">
 
+    <com.habibi.storyapp.custom_view.TextFieldLayout
+        android:id="@+id/edittext_layout_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/field_name"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <com.habibi.storyapp.custom_view.TextFieldEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:editTextType="name" />
+
+    </com.habibi.storyapp.custom_view.TextFieldLayout>
+
+    <com.habibi.storyapp.custom_view.TextFieldLayout
+        android:id="@+id/edittext_layout_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/field_email"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edittext_layout_name">
+
+        <com.habibi.storyapp.custom_view.TextFieldEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:editTextType="email" />
+
+    </com.habibi.storyapp.custom_view.TextFieldLayout>
+
+    <com.habibi.storyapp.custom_view.TextFieldLayout
+        android:id="@+id/edittext_layout_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/field_password"
+        app:errorEnabled="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edittext_layout_email">
+
+        <com.habibi.storyapp.custom_view.TextFieldEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:editTextType="password" />
+
+    </com.habibi.storyapp.custom_view.TextFieldLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/button_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edittext_layout_password" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

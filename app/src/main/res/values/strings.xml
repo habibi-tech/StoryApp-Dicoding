@@ -53,4 +53,6 @@
     <string name="field_name">Nama</string>
     <string name="field_email">Email</string>
     <string name="field_password">Password</string>
+    <string name="button_register">Daftar</string>
+    <string name="button_login">Masuk</string>
 </resources>
