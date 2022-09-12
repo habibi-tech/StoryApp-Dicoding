@@ -1,4 +1,4 @@
-package com.habibi.storyapp.story
+package com.habibi.storyapp.ui.story
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar

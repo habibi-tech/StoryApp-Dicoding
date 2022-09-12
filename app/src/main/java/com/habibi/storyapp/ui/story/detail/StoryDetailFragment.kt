@@ -1,4 +1,4 @@
-package com.habibi.storyapp.story.list
+package com.habibi.storyapp.ui.story.detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,11 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.habibi.storyapp.R
-import com.habibi.storyapp.databinding.FragmentStoryListBinding
+import com.habibi.storyapp.databinding.FragmentStoryDetailBinding
 
-class StoryListFragment : Fragment() {
+class StoryDetailFragment : Fragment() {
 
-    private var _binding: FragmentStoryListBinding? = null
+    private var _binding: FragmentStoryDetailBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,7 +19,7 @@ class StoryListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentStoryListBinding.inflate(inflater, container, false)
+        _binding = FragmentStoryDetailBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -27,8 +27,8 @@ class StoryListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        binding.buttonSecond.setOnClickListener {
+            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
         }
     }
 

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.habibi.storyapp.story.list.StoryListFragment"
+        android:name="com.habibi.storyapp.ui.story.list.StoryListFragment"
         android:label="@string/story_list_fragment_label"
         tools:layout="@layout/fragment_story_list">
 
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.habibi.storyapp.story.detail.StoryDetailFragment"
+        android:name="com.habibi.storyapp.ui.story.detail.StoryDetailFragment"
         android:label="@string/story_detail_fragment_label"
         tools:layout="@layout/fragment_story_detail">
 
