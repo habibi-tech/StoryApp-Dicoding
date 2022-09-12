@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TextFieldEditText">
+        <attr name="editTextType" format="enum">
+            <enum name="email" value="0" />
+            <enum name="password" value="1" />
+            <enum name="name" value="2" />
+            <enum name="description" value="3" />
+        </attr>
+    </declare-styleable>
+
+</resources>
