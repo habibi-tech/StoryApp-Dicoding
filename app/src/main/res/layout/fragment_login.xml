@@ -7,7 +7,7 @@
     tools:context=".ui.authentication.login.LoginFragment">
 
     <com.habibi.storyapp.custom_view.TextFieldLayout
-        android:id="@+id/edittext_layout_email"
+        android:id="@+id/ed_wrap_login_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/field_email"
@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.habibi.storyapp.custom_view.TextFieldEditText
+            android:id="@+id/ed_login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:editTextType="email" />
@@ -24,16 +25,17 @@
     </com.habibi.storyapp.custom_view.TextFieldLayout>
 
     <com.habibi.storyapp.custom_view.TextFieldLayout
-        android:id="@+id/edittext_layout_password"
+        android:id="@+id/ed_wrap_login_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/field_password"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/edittext_layout_email">
+        app:layout_constraintTop_toBottomOf="@id/ed_wrap_login_email">
 
         <com.habibi.storyapp.custom_view.TextFieldEditText
+            android:id="@+id/ed_login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:editTextType="password" />
@@ -41,11 +43,30 @@
     </com.habibi.storyapp.custom_view.TextFieldLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_login_submit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/button_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edittext_layout_password" />
+        app:layout_constraintTop_toBottomOf="@+id/ed_wrap_login_password" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_login_question_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/no_have_account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login_submit" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_login_action_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_login_question_register" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
