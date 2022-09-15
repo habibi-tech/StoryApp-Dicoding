@@ -15,11 +15,12 @@
             android:id="@+id/img_story_detail_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:src="@drawable/ic_image"
+            app:shapeAppearanceOverlay="@style/rounded_image"
             app:layout_constraintDimensionRatio="3:2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_image"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_story_register_name"

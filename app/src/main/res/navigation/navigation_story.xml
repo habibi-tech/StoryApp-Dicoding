@@ -13,17 +13,48 @@
 
         <action
             android:id="@+id/action_StoryListFragment_to_StoryDetailFragment"
-            app:destination="@id/StoryDetailFragment" />
+            app:destination="@id/StoryDetailFragment"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
         <action
             android:id="@+id/action_StoryListFragment_to_storyAddFragment"
-            app:destination="@id/storyAddFragment" />
+            app:destination="@id/storyAddFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
     </fragment>
 
     <fragment
         android:id="@+id/StoryDetailFragment"
         android:name="com.habibi.storyapp.ui.story.detail.StoryDetailFragment"
         android:label="@string/story_detail_fragment_label"
-        tools:layout="@layout/fragment_story_detail"/>
+        tools:layout="@layout/fragment_story_detail">
+        <argument
+            android:name="imageUrl"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="name"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="description"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="transitionImage"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="transitionName"
+            app:argType="string"
+            android:defaultValue="" />
+        <argument
+            android:name="transitionDescription"
+            app:argType="string"
+            android:defaultValue="" />
+    </fragment>
 
     <fragment
         android:id="@+id/storyAddFragment"

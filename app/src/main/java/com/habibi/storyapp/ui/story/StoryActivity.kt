@@ -31,10 +31,6 @@ class StoryActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-        binding.fab.setOnClickListener {
-            navController.navigate(R.id.action_StoryListFragment_to_storyAddFragment)
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
