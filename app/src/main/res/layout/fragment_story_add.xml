@@ -1,66 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.story.add.StoryAddFragment">
+    tools:context=".features.story.presentation.add.StoryAddFragment">
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/img_story_add_preview"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:src="@drawable/ic_image"
-        app:layout_constraintDimensionRatio="3:2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/space_16dp">
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_story_add_camera"
-        android:layout_width="204dp"
-        android:layout_height="wrap_content"
-        android:text="@string/camera"
-        app:layout_constraintEnd_toStartOf="@+id/btn_story_add_gallery"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_story_add_preview" />
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/img_story_add_preview"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/grey500"
+            android:src="@drawable/ic_add_a_photo"
+            app:layout_constraintDimensionRatio="3:2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.468"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/rounded_image" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_story_add_gallery"
-        android:layout_width="204dp"
-        android:layout_height="wrap_content"
-        android:text="@string/gallery"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_story_add_camera"
-        app:layout_constraintTop_toBottomOf="@+id/img_story_add_preview" />
-
-    <com.habibi.storyapp.custom_view.TextFieldLayout
-        android:id="@+id/ed_wrap_story_add_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="@string/description"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_story_add_camera">
-
-        <com.habibi.storyapp.custom_view.TextFieldEditText
-            android:id="@+id/ed_login_email"
-            android:layout_width="match_parent"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_story_add_camera"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:editTextType="description"
-            android:inputType="textMultiLine"/>
+            android:text="@string/camera"
+            android:layout_marginTop="@dimen/space_16dp"
+            android:layout_marginEnd="@dimen/space_16dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_story_add_gallery"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_story_add_preview" />
 
-    </com.habibi.storyapp.custom_view.TextFieldLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_story_add_gallery"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/gallery"
+            android:layout_marginTop="@dimen/space_16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/btn_story_add_camera"
+            app:layout_constraintTop_toBottomOf="@+id/img_story_add_preview" />
 
-    <com.google.android.material.button.MaterialButton
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/upload"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ed_wrap_story_add_description" />
+        <com.habibi.core.custom_view.TextFieldLayout
+            android:id="@+id/ed_wrap_story_add_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/description"
+            app:errorEnabled="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_story_add_camera"
+            android:layout_marginTop="@dimen/space_16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.habibi.core.custom_view.TextFieldEditText
+                android:id="@+id/ed_story_add_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:editTextType="description"
+                android:inputType="textMultiLine|textCapSentences"
+                android:lines="10"
+                android:minLines="5"
+                android:gravity="start"
+                android:maxLines="15"/>
+
+        </com.habibi.core.custom_view.TextFieldLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_story_add_submit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/upload"
+            android:layout_marginTop="@dimen/space_16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_wrap_story_add_description" />
+
+        <ProgressBar
+            android:id="@+id/pb_story_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_story_add_submit"
+            app:layout_constraintEnd_toEndOf="@+id/btn_story_add_submit"
+            app:layout_constraintStart_toStartOf="@+id/btn_story_add_submit"
+            app:layout_constraintTop_toTopOf="@+id/btn_story_add_submit" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

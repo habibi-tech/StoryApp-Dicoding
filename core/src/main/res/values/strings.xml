@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="error_field_empty">Harus diisi!</string>
+    <string name="error_field_email_invalid">Format belum sesuai!</string>
+    <string name="error_field_password_too_short">Minimal 6 karakter!</string>
+    <string name="error_field_name_too_short">Minimal 3 karakter!</string>
+    <string name="something_wrong">Terjadi Kesalahan!</string>
+</resources>

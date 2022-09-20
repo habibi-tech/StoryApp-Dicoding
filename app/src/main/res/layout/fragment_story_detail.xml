@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.story.detail.StoryDetailFragment">
+    tools:context=".features.story.presentation.detail.StoryDetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,12 +15,14 @@
             android:id="@+id/img_story_detail_image"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:shapeAppearanceOverlay="@style/rounded_image"
+            android:layout_marginTop="16dp"
+            android:src="@color/grey500"
             app:layout_constraintDimensionRatio="3:2"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_image"/>
+            app:shapeAppearanceOverlay="@style/rounded_image" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_story_register_name"
@@ -29,16 +31,21 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_story_detail_image"
-            tools:text="Name" />
+            tools:text="Name"
+            style="@style/TextAppearance.MdcTypographyStyles.Headline6"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/space_16dp"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tv_story_register_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_story_register_name"
-            tools:text="Description" />
+            tools:text="Description"
+            style="@style/TextAppearance.MdcTypographyStyles.Body1"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

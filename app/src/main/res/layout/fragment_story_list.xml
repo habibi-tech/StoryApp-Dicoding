@@ -5,28 +5,79 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingHorizontal="16dp"
-    tools:context=".ui.story.list.StoryListFragment">
+    tools:context=".features.story.presentation.list.StoryListFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_story_list"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        tools:listitem="@layout/item_story"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/item_story" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fab_story_list"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/add_story"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/ic_post_add"
         android:layout_marginEnd="@dimen/space_16dp"
-        android:layout_marginBottom="@dimen/space_16dp"/>
+        android:layout_marginBottom="@dimen/space_16dp"
+        android:contentDescription="@string/add_story"
+        android:text="@string/add_story"
+        app:icon="@drawable/ic_post_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/pb_story_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group_story_list_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="btn_story_list_reload, iv_story_list_image_error, tv_story_list_message_error"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/iv_story_list_image_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/tv_story_list_message_error"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:src="@drawable/ic_sentiment_dissatisfied" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tv_story_list_message_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/btn_story_list_reload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_story_list_image_error"
+        tools:text="Data Kosong!" />
+
+    <Button
+        android:id="@+id/btn_story_list_reload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_16dp"
+        android:text="@string/try_again"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_story_list_message_error" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

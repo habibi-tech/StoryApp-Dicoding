@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.authentication.register.RegisterFragment">
+    tools:context=".features.authentication.presentation.register.RegisterFragment"
+    android:padding="@dimen/space_16dp">
 
-    <com.habibi.storyapp.custom_view.TextFieldLayout
+    <com.habibi.core.custom_view.TextFieldLayout
         android:id="@+id/ed_wrap_register_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -16,57 +17,73 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.habibi.storyapp.custom_view.TextFieldEditText
+        <com.habibi.core.custom_view.TextFieldEditText
             android:id="@+id/ed_register_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:editTextType="name" />
+            app:editTextType="name"
+            android:inputType="textCapWords"/>
 
-    </com.habibi.storyapp.custom_view.TextFieldLayout>
+    </com.habibi.core.custom_view.TextFieldLayout>
 
-    <com.habibi.storyapp.custom_view.TextFieldLayout
+    <com.habibi.core.custom_view.TextFieldLayout
         android:id="@+id/ed_wrap_register_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/field_email"
         app:errorEnabled="true"
+        android:layout_marginTop="@dimen/space_8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ed_wrap_register_name">
 
-        <com.habibi.storyapp.custom_view.TextFieldEditText
+        <com.habibi.core.custom_view.TextFieldEditText
             android:id="@+id/ed_register_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:editTextType="email" />
+            app:editTextType="email"
+            android:inputType="textEmailAddress"/>
 
-    </com.habibi.storyapp.custom_view.TextFieldLayout>
+    </com.habibi.core.custom_view.TextFieldLayout>
 
-    <com.habibi.storyapp.custom_view.TextFieldLayout
+    <com.habibi.core.custom_view.TextFieldLayout
         android:id="@+id/ed_wrap_register_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/field_password"
         app:errorEnabled="true"
+        android:layout_marginTop="@dimen/space_8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ed_wrap_register_email">
 
-        <com.habibi.storyapp.custom_view.TextFieldEditText
+        <com.habibi.core.custom_view.TextFieldEditText
             android:id="@+id/ed_register_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:editTextType="password" />
+            app:editTextType="password"
+            android:inputType="textPassword"/>
 
-    </com.habibi.storyapp.custom_view.TextFieldLayout>
+    </com.habibi.core.custom_view.TextFieldLayout>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_register_submit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/button_register"
+        android:layout_marginTop="@dimen/space_8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ed_wrap_register_password" />
+
+    <ProgressBar
+        android:id="@+id/pb_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/btn_register_submit"
+        app:layout_constraintStart_toStartOf="@+id/btn_register_submit"
+        app:layout_constraintTop_toTopOf="@+id/btn_register_submit"
+        app:layout_constraintBottom_toBottomOf="@id/btn_register_submit"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
