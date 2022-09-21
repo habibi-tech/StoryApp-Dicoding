@@ -6,9 +6,11 @@ import com.habibi.core.data.source.remote.network.ApiResponse
 import com.habibi.core.data.source.remote.response.ListStoryItem
 import com.habibi.core.domain.repository.IStoryRepository
 import com.habibi.core.domain.story.data.StoryItem
+import com.habibi.core.utils.convertToMultiPart
+import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
-import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.toRequestBody
 
 @Singleton
 class StoryRepository @Inject constructor(
@@ -19,10 +21,15 @@ class StoryRepository @Inject constructor(
     override suspend fun getUserName(): String =
         userSessionDataStore.getUserName()
 
-    override suspend fun postNewStory(photo: MultipartBody.Part, description: String): Resource<Unit> =
+    override suspend fun postNewStory(photoFile: File, description: String): Resource<Unit> =
         object : NetworkResource<Unit, Unit>() {
-            override suspend fun createCall(): ApiResponse<Unit> =
-                remoteDataSource.postNewStory(photo, description)
+            override suspend fun createCall(): ApiResponse<Unit> {
+
+                val multipartBody = photoFile.convertToMultiPart()
+                val requestBodyDesc = description.toRequestBody()
+
+                return remoteDataSource.postNewStory(userSessionDataStore.getToken(), multipartBody, requestBodyDesc)
+            }
             override suspend fun onSuccess(data: Unit) {}
         }.result()
 

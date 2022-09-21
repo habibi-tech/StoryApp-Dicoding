@@ -5,6 +5,7 @@ import com.habibi.core.data.source.remote.response.ListStoryResponse
 import com.habibi.core.data.source.remote.response.LoginResponse
 import com.habibi.core.data.source.remote.response.RegisterResponse
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -34,8 +35,9 @@ interface ApiService {
     @Multipart
     @POST("stories")
     suspend fun postNewStory(
+        @HeaderMap header: Map<String, String>,
         @Part photo: MultipartBody.Part,
-        @Part("description") description: String
+        @Part("description") description: RequestBody
     ): Response<NewStoryResponse>
 
     @GET("stories")

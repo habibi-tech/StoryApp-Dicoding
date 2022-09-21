@@ -12,6 +12,7 @@ import com.habibi.core.data.source.remote.response.RegisterResponse
 import javax.inject.Inject
 import javax.inject.Singleton
 import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Response
 
 @Singleton
@@ -48,7 +49,7 @@ class RemoteDataSource @Inject constructor(
                 apiService.postLogin(email, password)
         }.result()
 
-    suspend fun postNewStory(photo: MultipartBody.Part, description: String): ApiResponse<Unit> =
+    suspend fun postNewStory(token: String, photo: MultipartBody.Part, description: RequestBody): ApiResponse<Unit> =
         object : RemoteResource<Unit, NewStoryResponse>() {
             override suspend fun dataResponseFailed(stringJson: String): NewStoryResponse =
                 gson.fromJson(stringJson, NewStoryResponse::class.java)
@@ -59,7 +60,9 @@ class RemoteDataSource @Inject constructor(
             override suspend fun dataSuccess(dataResponse: NewStoryResponse) =
                 Unit
             override suspend fun createCall(): Response<NewStoryResponse> =
-                apiService.postNewStory(photo, description)
+                apiService.postNewStory(
+                    mapOf("Authorization" to "Bearer $token"),
+                    photo, description)
         }.result()
 
     suspend fun getListStories(token: String): ApiResponse<List<ListStoryItem>> =

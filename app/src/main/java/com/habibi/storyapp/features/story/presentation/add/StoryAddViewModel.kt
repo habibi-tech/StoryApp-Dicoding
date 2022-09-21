@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.habibi.core.data.Resource
 import com.habibi.core.domain.story.usecase.IStoryAddUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.io.File
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,16 +23,25 @@ class StoryAddViewModel @Inject constructor(
     private val _fieldValid = MutableLiveData(false)
     val fieldValid: LiveData<Boolean> get() = _fieldValid
 
-    private var _photoPath = ""
+    private var _photoFile = MutableLiveData<File>()
+    val photoFile: LiveData<File> get() = _photoFile
 
-    fun checkFieldValidation(descriptionError: CharSequence?, description: String) {
-        _fieldValid.value = descriptionError.isNullOrEmpty() && description.isNotEmpty() &&_photoPath.isNotEmpty()
+    private var _currentPhotoPath: String = ""
+    val currentPhotoPath get() = _currentPhotoPath
+
+    fun setCurrentPhotoPath(path: String) {
+        _currentPhotoPath = path
+    }
+
+    fun checkFieldValidation(file: File?, descriptionError: CharSequence?, description: String) {
+        file?.let { _photoFile.value = it }
+        _fieldValid.value = descriptionError.isNullOrEmpty() && description.isNotEmpty() && _photoFile.value != null
     }
 
     fun postNewStory(description: String) {
         _newStory.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {
-            _newStory.postValue(useCase.postNewStory(_photoPath, description))
+            _newStory.postValue(useCase.postNewStory(photoFile.value!!, description))
         }
     }
 

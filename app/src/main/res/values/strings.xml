@@ -31,4 +31,6 @@
     <string name="logout">Keluar</string>
     <string name="try_again">Coba lagi</string>
     <string name="data_empty">Data kosong!</string>
+    <string name="failed_fetch_image">Gagal mengambil gambar!</string>
+    <string name="permission_denied">Permission ditolak!</string>
 </resources>
