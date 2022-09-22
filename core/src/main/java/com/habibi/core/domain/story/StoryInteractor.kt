@@ -1,6 +1,5 @@
 package com.habibi.core.domain.story
 
-import com.habibi.core.domain.repository.IStoryRepository
 import com.habibi.core.domain.repository.IUserSessionRepository
 import com.habibi.core.domain.story.usecase.IStoryUseCase
 import javax.inject.Inject

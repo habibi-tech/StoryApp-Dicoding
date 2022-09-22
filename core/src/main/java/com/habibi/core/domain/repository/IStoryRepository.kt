@@ -1,10 +1,8 @@
 package com.habibi.core.domain.repository
 
-import android.graphics.Bitmap
 import com.habibi.core.data.Resource
 import com.habibi.core.domain.story.data.StoryItem
 import java.io.File
-import okhttp3.MultipartBody
 
 interface IStoryRepository {
 

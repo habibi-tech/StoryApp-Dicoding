@@ -161,14 +161,14 @@ class StoryListFragment : Fragment() {
         val action = StoryListFragmentDirections.actionStoryListFragmentToStoryDetailFragment()
 
         val extras = FragmentNavigatorExtras(
-            itemStoryBinding.ivItemStoryImage to itemStoryBinding.ivItemStoryImage.transitionName,
-            itemStoryBinding.tvItemStoryName to itemStoryBinding.tvItemStoryName.transitionName,
-            itemStoryBinding.tvItemStoryDescription to itemStoryBinding.tvItemStoryDescription.transitionName
+            itemStoryBinding.ivItemPhoto to itemStoryBinding.ivItemPhoto.transitionName,
+            itemStoryBinding.tvItemName to itemStoryBinding.tvItemName.transitionName,
+            itemStoryBinding.tvItemDescription to itemStoryBinding.tvItemDescription.transitionName
         )
 
-        action.transitionImage = itemStoryBinding.ivItemStoryImage.transitionName
-        action.transitionName = itemStoryBinding.tvItemStoryName.transitionName
-        action.transitionDescription = itemStoryBinding.tvItemStoryDescription.transitionName
+        action.transitionImage = itemStoryBinding.ivItemPhoto.transitionName
+        action.transitionName = itemStoryBinding.tvItemName.transitionName
+        action.transitionDescription = itemStoryBinding.tvItemDescription.transitionName
         action.imageUrl = item.photoUrl
         action.name = item.name
         action.description = item.description

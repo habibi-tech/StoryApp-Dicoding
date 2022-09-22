@@ -8,7 +8,7 @@
     android:padding="@dimen/space_16dp">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/img_login_icon"
+        android:id="@+id/iv_login_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_app_logo"
@@ -25,13 +25,13 @@
         style="@style/TextAppearance.MdcTypographyStyles.Headline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_login_icon" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_login_icon" />
 
     <com.habibi.core.custom_view.TextFieldLayout
         android:id="@+id/ed_wrap_login_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/field_email"
+        android:hint="@string/email"
         app:errorEnabled="true"
         android:layout_marginTop="@dimen/space_16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
         android:id="@+id/ed_wrap_login_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/field_password"
+        android:hint="@string/password"
         app:errorEnabled="true"
         android:layout_marginTop="@dimen/space_8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,10 +68,10 @@
     </com.habibi.core.custom_view.TextFieldLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_login_submit"
+        android:id="@+id/button_login"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/button_login"
+        android:text="@string/login"
         android:layout_marginTop="@dimen/space_8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -82,10 +82,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_login_submit"
-        app:layout_constraintEnd_toEndOf="@+id/btn_login_submit"
-        app:layout_constraintStart_toStartOf="@+id/btn_login_submit"
-        app:layout_constraintTop_toTopOf="@+id/btn_login_submit" />
+        app:layout_constraintBottom_toBottomOf="@+id/button_login"
+        app:layout_constraintEnd_toEndOf="@+id/button_login"
+        app:layout_constraintStart_toStartOf="@+id/button_login"
+        app:layout_constraintTop_toTopOf="@+id/button_login" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_login_question_register"
@@ -96,13 +96,13 @@
         style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login_submit" />
+        app:layout_constraintTop_toBottomOf="@+id/button_login" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tv_login_action_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_register"
+        android:text="@string/register"
         android:textStyle="bold"
         style="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
         android:textColor="@android:color/holo_blue_dark"

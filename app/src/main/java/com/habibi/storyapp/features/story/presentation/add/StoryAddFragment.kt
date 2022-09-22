@@ -70,7 +70,7 @@ class StoryAddFragment : Fragment() {
 
     private fun initEditTextChangeListener() {
 
-        binding.edStoryAddDescription.doOnTextChanged { _, _, _, _ ->
+        binding.edAddDescription.doOnTextChanged { _, _, _, _ ->
             checkFieldValidation()
         }
 
@@ -80,23 +80,23 @@ class StoryAddFragment : Fragment() {
         viewModel.checkFieldValidation(
             file,
             binding.edWrapStoryAddDescription.error,
-            binding.edStoryAddDescription.text.toString()
+            binding.edAddDescription.text.toString()
         )
     }
 
     private fun initListener() {
 
-        binding.btnStoryAddSubmit.setOnClickListener {
+        binding.buttonAdd.setOnClickListener {
             viewModel.postNewStory(
-                binding.edStoryAddDescription.text.toString()
+                binding.edAddDescription.text.toString()
             )
         }
 
-        binding.btnStoryAddGallery.setOnClickListener {
+        binding.buttonAddGallery.setOnClickListener {
             goToGallery()
         }
 
-        binding.btnStoryAddCamera.setOnClickListener {
+        binding.buttonAddCamera.setOnClickListener {
             goToCamera()
         }
     }
@@ -104,13 +104,13 @@ class StoryAddFragment : Fragment() {
     private fun initObserver() {
 
         viewModel.photoFile.observe(viewLifecycleOwner) {
-            binding.imgStoryAddPreview.setImageBitmap(
+            binding.ivAddPreview.setImageBitmap(
                 BitmapFactory.decodeFile(it.path)
             )
         }
 
         viewModel.fieldValid.observe(viewLifecycleOwner) {
-            binding.btnStoryAddSubmit.isEnabled = it
+            binding.buttonAdd.isEnabled = it
         }
 
         viewModel.newStory.observe(viewLifecycleOwner) {
@@ -134,14 +134,14 @@ class StoryAddFragment : Fragment() {
 
     private fun onLoading(isLoading: Boolean) {
         binding.apply {
-            edStoryAddDescription.isEnabled = !isLoading
-            btnStoryAddCamera.isEnabled = !isLoading
-            btnStoryAddGallery.isEnabled = !isLoading
+            edAddDescription.isEnabled = !isLoading
+            buttonAddCamera.isEnabled = !isLoading
+            buttonAddGallery.isEnabled = !isLoading
             if (isLoading) {
-                btnStoryAddSubmit.visibility = View.INVISIBLE
+                buttonAdd.visibility = View.INVISIBLE
                 pbStoryAdd.visibility = View.VISIBLE
             } else {
-                btnStoryAddSubmit.visibility = View.VISIBLE
+                buttonAdd.visibility = View.VISIBLE
                 pbStoryAdd.visibility = View.GONE
             }
         }

@@ -1,36 +1,24 @@
 <resources>
     <string name="app_name">Story App</string>
-    <string name="action_settings">Settings</string>
-    <string name="action_profile">Profil</string>
-    <string name="action_language">Bahasa</string>
-    <!-- Strings used for fragments for navigation -->
+    <string name="account">Account</string>
+    <string name="language">Language</string>
     <string name="story_list_fragment_label">Story App</string>
-    <string name="story_detail_fragment_label">Detail Story</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="add_story">Tambah Cerita</string>
-
-    <string name="login">Masuk</string>
+    <string name="story_detail_fragment_label">Story Detail</string>
+    <string name="add_story">Add Story</string>
+    <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="field_name">Nama</string>
-    <string name="field_email">Email</string>
-    <string name="field_password">Password</string>
-    <string name="button_register">Daftar</string>
-    <string name="button_login">Masuk</string>
-    <string name="no_have_account">Tidak punya akun?</string>
-    <string name="camera">Kamera</string>
-    <string name="gallery">Galeri</string>
-    <string name="description">Deskripsi</string>
-    <string name="upload">Unggah</string>
-    <string name="language">Bahasa</string>
-    <string name="indonesia">Indonesia</string>
-    <string name="english">Inggris</string>
-    <string name="choose">Pilih</string>
-    <string name="cancel">Batal</string>
-    <string name="logout">Keluar</string>
-    <string name="try_again">Coba lagi</string>
-    <string name="data_empty">Data kosong!</string>
-    <string name="failed_fetch_image">Gagal mengambil gambar!</string>
-    <string name="permission_denied">Permission ditolak!</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="no_have_account">No have account?</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="description">Description</string>
+    <string name="upload">Upload</string>
+    <string name="cancel">Cancel</string>
+    <string name="logout">Logout</string>
+    <string name="try_again">Try again!</string>
+    <string name="data_empty">Data empty!</string>
+    <string name="permission_denied">Permission denied!</string>
+    <string name="preview_image">Image Story</string>
 </resources>

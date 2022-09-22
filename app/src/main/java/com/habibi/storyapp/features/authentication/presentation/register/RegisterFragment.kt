@@ -68,7 +68,7 @@ class RegisterFragment : Fragment() {
     private fun initObserver() {
 
         viewModel.fieldValid.observe(viewLifecycleOwner) {
-            binding.btnRegisterSubmit.isEnabled = it
+            binding.buttonRegister.isEnabled = it
         }
 
         viewModel.register.observe(viewLifecycleOwner) {
@@ -91,7 +91,7 @@ class RegisterFragment : Fragment() {
 
     private fun initListener() {
 
-        binding.btnRegisterSubmit.setOnClickListener {
+        binding.buttonRegister.setOnClickListener {
             viewModel.postRegister(
                 binding.edRegisterName.text.toString(),
                 binding.edRegisterEmail.text.toString(),
@@ -107,10 +107,10 @@ class RegisterFragment : Fragment() {
             edRegisterEmail.isEnabled = !isLoading
             edRegisterPassword.isEnabled = !isLoading
             if (isLoading) {
-                btnRegisterSubmit.visibility = View.INVISIBLE
+                buttonRegister.visibility = View.INVISIBLE
                 pbRegister.visibility = View.VISIBLE
             } else {
-                btnRegisterSubmit.visibility = View.VISIBLE
+                buttonRegister.visibility = View.VISIBLE
                 pbRegister.visibility = View.GONE
             }
         }

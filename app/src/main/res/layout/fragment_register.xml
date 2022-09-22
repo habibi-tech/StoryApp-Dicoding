@@ -11,7 +11,7 @@
         android:id="@+id/ed_wrap_register_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/field_name"
+        android:hint="@string/name"
         app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -30,7 +30,7 @@
         android:id="@+id/ed_wrap_register_email"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/field_email"
+        android:hint="@string/email"
         app:errorEnabled="true"
         android:layout_marginTop="@dimen/space_8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +50,7 @@
         android:id="@+id/ed_wrap_register_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/field_password"
+        android:hint="@string/password"
         app:errorEnabled="true"
         android:layout_marginTop="@dimen/space_8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,10 +67,10 @@
     </com.habibi.core.custom_view.TextFieldLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_register_submit"
+        android:id="@+id/button_register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/button_register"
+        android:text="@string/register"
         android:layout_marginTop="@dimen/space_8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -81,9 +81,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/btn_register_submit"
-        app:layout_constraintStart_toStartOf="@+id/btn_register_submit"
-        app:layout_constraintTop_toTopOf="@+id/btn_register_submit"
-        app:layout_constraintBottom_toBottomOf="@id/btn_register_submit"/>
+        app:layout_constraintEnd_toEndOf="@+id/button_register"
+        app:layout_constraintStart_toStartOf="@+id/button_register"
+        app:layout_constraintTop_toTopOf="@+id/button_register"
+        app:layout_constraintBottom_toBottomOf="@id/button_register"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

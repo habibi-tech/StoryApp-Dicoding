@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.habibi.core.data.Resource
-import com.habibi.core.domain.authentication.usecase.ILoginUseCase
 import com.habibi.core.domain.authentication.usecase.IRegisterUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

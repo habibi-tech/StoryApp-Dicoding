@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="@dimen/space_16dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -11,7 +10,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/iv_item_story_image"
+            android:id="@+id/iv_item_photo"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:src="@color/grey500"
@@ -21,27 +20,25 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_item_story_name"
+            android:id="@+id/tv_item_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_item_story_image"
-            tools:text="Nama"
+            app:layout_constraintTop_toBottomOf="@id/iv_item_photo"
             android:textStyle="bold"
             style="@style/TextAppearance.MdcTypographyStyles.Headline6"
             android:layout_marginTop="@dimen/space_16dp"
             android:layout_marginStart="@dimen/space_16dp"/>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tv_item_story_description"
+            android:id="@+id/tv_item_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_item_story_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_item_name"
             android:layout_marginVertical="@dimen/space_16dp"
-            tools:text="Deskripsi"
             style="@style/TextAppearance.MdcTypographyStyles.Body1"
             android:ellipsize="end"
             android:maxLines="1"/>

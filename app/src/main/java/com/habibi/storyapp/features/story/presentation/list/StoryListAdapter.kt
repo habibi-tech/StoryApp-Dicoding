@@ -46,18 +46,18 @@ class StoryListAdapter(
 
         fun bind(item: StoryItem, position: Int){
 
-            binding.ivItemStoryImage.transitionName = "image$position"
-            binding.tvItemStoryName.transitionName = "name$position"
-            binding.tvItemStoryDescription.transitionName = "description$position"
+            binding.ivItemPhoto.transitionName = "image$position"
+            binding.tvItemName.transitionName = "name$position"
+            binding.tvItemDescription.transitionName = "description$position"
 
             currentItem = item
 
             binding.apply {
-                tvItemStoryName.text = item.name
-                tvItemStoryDescription.text = item.description
+                tvItemName.text = item.name
+                tvItemDescription.text = item.description
             }
 
-            binding.ivItemStoryImage.setImage(item.photoUrl)
+            binding.ivItemPhoto.setImage(item.photoUrl)
         }
     }
 

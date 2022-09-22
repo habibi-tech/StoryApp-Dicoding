@@ -43,7 +43,7 @@ class LoginFragment : Fragment() {
     private fun initObserver() {
 
         viewModel.fieldValid.observe(viewLifecycleOwner) {
-            binding.btnLoginSubmit.isEnabled = it
+            binding.buttonLogin.isEnabled = it
         }
 
         viewModel.login.observe(viewLifecycleOwner) {
@@ -69,10 +69,10 @@ class LoginFragment : Fragment() {
             edLoginEmail.isEnabled = !isLoading
             edLoginPassword.isEnabled = !isLoading
             if (isLoading) {
-                btnLoginSubmit.visibility = View.INVISIBLE
+                buttonLogin.visibility = View.INVISIBLE
                 pbLogin.visibility = View.VISIBLE
             } else {
-                btnLoginSubmit.visibility = View.VISIBLE
+                buttonLogin.visibility = View.VISIBLE
                 pbLogin.visibility = View.GONE
             }
         }
@@ -108,7 +108,7 @@ class LoginFragment : Fragment() {
 
     private fun initListener() {
 
-        binding.btnLoginSubmit.setOnClickListener {
+        binding.buttonLogin.setOnClickListener {
             viewModel.postLogin(
                 binding.edLoginEmail.text.toString(),
                 binding.edLoginPassword.text.toString()

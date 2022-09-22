@@ -23,9 +23,9 @@ class StoryDetailFragment : Fragment() {
     ): View {
         _binding = FragmentStoryDetailBinding.inflate(inflater, container, false)
 
-        binding.imgStoryDetailImage.transitionName = args.transitionImage
-        binding.tvStoryRegisterName.transitionName = args.transitionName
-        binding.tvStoryRegisterDescription.transitionName = args.transitionDescription
+        binding.ivDetailPhoto.transitionName = args.transitionImage
+        binding.tvDetailName.transitionName = args.transitionName
+        binding.tvDetailDescription.transitionName = args.transitionDescription
 
         val moveAnimation = TransitionInflater.from(requireContext()).inflateTransition(
             android.R.transition.move
@@ -40,9 +40,9 @@ class StoryDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.imgStoryDetailImage.setImage(args.imageUrl)
-        binding.tvStoryRegisterName.text = args.name
-        binding.tvStoryRegisterDescription.text = args.description
+        binding.ivDetailPhoto.setImage(args.imageUrl)
+        binding.tvDetailName.text = args.name
+        binding.tvDetailDescription.text = args.description
     }
 
     override fun onDestroyView() {

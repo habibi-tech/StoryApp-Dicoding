@@ -4,7 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
-import android.util.Log
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
@@ -27,6 +27,7 @@ import com.habibi.storyapp.features.story.presentation.add.StoryAddFragment
 import com.habibi.storyapp.features.story.presentation.detail.StoryDetailFragment
 import com.habibi.storyapp.features.story.presentation.list.StoryListFragment
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class StoryActivity : AppCompatActivity() {
@@ -75,10 +76,10 @@ class StoryActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_language -> {
-                showDialogChooseLanguage()
+                goToPreferenceLanguage()
                 true
             }
-            R.id.action_account -> {
+            R.id.action_logout -> {
                 showDialogProfile()
                 true
             }
@@ -86,25 +87,8 @@ class StoryActivity : AppCompatActivity() {
         }
     }
 
-    private fun showDialogChooseLanguage() {
-        MaterialAlertDialogBuilder(this)
-            .setTitle(R.string.language)
-            .setSingleChoiceItems(
-                arrayOf(
-                    getString(R.string.indonesia),
-                    getString(R.string.english)
-                ),
-                0
-            ) { _, position ->
-                Log.i("thiiis", "showDialogProfile: $position")
-            }
-            .setPositiveButton(R.string.choose) { _, _ ->
-                Log.i("h", "showDialogProfile: ")
-            }
-            .setNegativeButton(R.string.cancel) {_, _ ->
-
-            }
-            .show()
+    private fun goToPreferenceLanguage() {
+        startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
     }
 
     private fun showDialogProfile() {
@@ -115,7 +99,6 @@ class StoryActivity : AppCompatActivity() {
                 goToLogin()
             }
             .setNegativeButton(R.string.cancel) { _, _ ->
-                Log.i("h", "showDialogProfile: ")
             }
             .show()
     }
@@ -159,8 +142,7 @@ class StoryActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     override fun onRequestPermissionsResult(
