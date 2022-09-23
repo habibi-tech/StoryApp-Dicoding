@@ -15,7 +15,11 @@ class UserSessionRepository  @Inject constructor(
 ): IUserSessionRepository {
 
     override suspend fun setUserLogout() {
-        userSessionDataStore.setLoggedIn(false)
+        userSessionDataStore.apply {
+            removeUserName()
+            removeToken()
+            setLogout()
+        }
     }
 
     override suspend fun isLoggedIn(): Boolean =
@@ -39,7 +43,7 @@ class UserSessionRepository  @Inject constructor(
                 userSessionDataStore.apply {
                     setUserName(data.name)
                     setToken(data.token)
-                    setLoggedIn(true)
+                    setLoggedIn()
                 }
             }
         }.result()

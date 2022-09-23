@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.habibi.core.data.Resource
-import com.habibi.core.domain.authentication.usecase.IRegisterUseCase
+import com.habibi.core.domain.authentication.usecase.IAuthenticationUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class RegisterViewModel @Inject constructor(
-    private val useCase: IRegisterUseCase
+    private val useCase: IAuthenticationUseCase
 ): ViewModel() {
 
     private val _register = MutableLiveData<Resource<Unit>>()

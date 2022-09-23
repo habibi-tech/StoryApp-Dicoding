@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.habibi.core.data.Resource
-import com.habibi.core.domain.story.usecase.IStoryAddUseCase
+import com.habibi.core.domain.story.usecase.IStoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.io.File
 import javax.inject.Inject
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class StoryAddViewModel @Inject constructor(
-    private val useCase: IStoryAddUseCase
+    private val useCase: IStoryUseCase
 ): ViewModel() {
 
     private val _newStory = MutableLiveData<Resource<Unit>>()

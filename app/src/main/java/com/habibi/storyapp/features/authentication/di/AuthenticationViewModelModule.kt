@@ -1,9 +1,7 @@
 package com.habibi.storyapp.features.authentication.di
 
-import com.habibi.core.domain.authentication.LoginInteractor
-import com.habibi.core.domain.authentication.RegisterInteractor
-import com.habibi.core.domain.authentication.usecase.ILoginUseCase
-import com.habibi.core.domain.authentication.usecase.IRegisterUseCase
+import com.habibi.core.domain.authentication.AuthenticationInteractor
+import com.habibi.core.domain.authentication.usecase.IAuthenticationUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,14 +14,8 @@ abstract class AuthenticationViewModelModule {
 
     @Binds
     @ViewModelScoped
-    abstract fun provideLoginUseCase(
-        loginInteractor: LoginInteractor
-    ): ILoginUseCase
-
-    @Binds
-    @ViewModelScoped
-    abstract fun provideRegisterUseCase(
-        registerInteractor: RegisterInteractor
-    ): IRegisterUseCase
+    abstract fun provideAuthenticationUseCase(
+        authenticationInteractor: AuthenticationInteractor
+    ): IAuthenticationUseCase
 
 }

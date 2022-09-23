@@ -1,10 +1,6 @@
 package com.habibi.storyapp.features.story.di
 
-import com.habibi.core.domain.story.StoryAddInteractor
 import com.habibi.core.domain.story.StoryInteractor
-import com.habibi.core.domain.story.StoryListInteractor
-import com.habibi.core.domain.story.usecase.IStoryAddUseCase
-import com.habibi.core.domain.story.usecase.IStoryListUseCase
 import com.habibi.core.domain.story.usecase.IStoryUseCase
 import dagger.Binds
 import dagger.Module
@@ -21,17 +17,5 @@ abstract class StoryViewModelModule {
     abstract fun provideStoryUseCase(
         storyInteractor: StoryInteractor
     ): IStoryUseCase
-
-    @Binds
-    @ViewModelScoped
-    abstract fun provideStoryListUseCase(
-        storyListInteractor: StoryListInteractor
-    ): IStoryListUseCase
-
-    @Binds
-    @ViewModelScoped
-    abstract fun provideStoryAddUseCase(
-        storyAddInteractor: StoryAddInteractor
-    ): IStoryAddUseCase
 
 }

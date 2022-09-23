@@ -5,6 +5,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.stringPreferencesKey
+import com.habibi.core.data.source.local.constant.UserSessionConstant
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.flow.first
@@ -14,13 +15,19 @@ class UserSessionDataStore @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) {
 
-    private val isLoggedInKey = booleanPreferencesKey("is_logged_in")
-    private val userNameKey = stringPreferencesKey("user_name")
-    private val tokenKey = stringPreferencesKey("token")
+    private val isLoggedInKey = booleanPreferencesKey(UserSessionConstant.KEY_IS_LOGGED_IN)
+    private val userNameKey = stringPreferencesKey(UserSessionConstant.KEY_USERNAME)
+    private val tokenKey = stringPreferencesKey(UserSessionConstant.KEY_TOKEN)
 
-    suspend fun setLoggedIn(isLoggedIn: Boolean) {
+    suspend fun setLoggedIn() {
         dataStore.edit { preference ->
-            preference[isLoggedInKey] = isLoggedIn
+            preference[isLoggedInKey] = true
+        }
+    }
+
+    suspend fun setLogout() {
+        dataStore.edit { preference ->
+            preference[isLoggedInKey] = false
         }
     }
 
@@ -34,6 +41,12 @@ class UserSessionDataStore @Inject constructor(
 
     suspend fun getUserName(): String = dataStore.data.first()[userNameKey] ?: ""
 
+    suspend fun removeUserName() {
+        dataStore.edit { preference ->
+            preference.remove(userNameKey)
+        }
+    }
+
     suspend fun setToken(token: String) {
         dataStore.edit { preference ->
             preference[tokenKey] = token
@@ -41,5 +54,11 @@ class UserSessionDataStore @Inject constructor(
     }
 
     suspend fun getToken(): String = dataStore.data.first()[tokenKey] ?: ""
+
+    suspend fun removeToken() {
+        dataStore.edit { preference ->
+            preference.remove(tokenKey)
+        }
+    }
 
 }
