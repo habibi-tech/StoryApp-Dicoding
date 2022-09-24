@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.habibi.core.data.Resource
+import com.habibi.core.data.source.local.entity.StoriesEntity
 import com.habibi.core.data.source.remote.response.ListStoryItem
 import com.habibi.core.domain.story.data.StoryItem
 import com.habibi.core.domain.story.usecase.IStoryUseCase
@@ -35,6 +36,6 @@ class StoryListViewModel @Inject constructor(
         }
     }
 
-    val getListPaging: LiveData<PagingData<StoryItem>> =
+    val getListPaging: LiveData<PagingData<StoriesEntity>> =
         useCase.getStoryPaging().cachedIn(viewModelScope).asLiveData()
 }

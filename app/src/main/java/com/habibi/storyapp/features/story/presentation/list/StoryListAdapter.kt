@@ -5,13 +5,13 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.habibi.core.domain.story.data.StoryItem
+import com.habibi.core.data.source.local.entity.StoriesEntity
 import com.habibi.core.utils.setImage
 import com.habibi.storyapp.databinding.ItemStoryBinding
 
 class StoryListAdapter(
-    private val onClick: (StoryItem, ItemStoryBinding) -> Unit
-): PagingDataAdapter<StoryItem, StoryListAdapter.ViewHolder>(DIFF_CALLBACK) {
+    private val onClick: (StoriesEntity, ItemStoryBinding) -> Unit
+): PagingDataAdapter<StoriesEntity, StoryListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = ItemStoryBinding.inflate(
@@ -29,10 +29,10 @@ class StoryListAdapter(
 
     inner class ViewHolder(
         private val binding: ItemStoryBinding,
-        val onClick: (StoryItem, ItemStoryBinding) -> Unit
+        val onClick: (StoriesEntity, ItemStoryBinding) -> Unit
     ): RecyclerView.ViewHolder(binding.root){
 
-        private var currentItem: StoryItem? = null
+        private var currentItem: StoriesEntity? = null
 
         init {
             binding.root.setOnClickListener {
@@ -42,7 +42,7 @@ class StoryListAdapter(
             }
         }
 
-        fun bind(item: StoryItem?, position: Int){
+        fun bind(item: StoriesEntity?, position: Int){
 
             binding.ivItemPhoto.transitionName = "image$position"
             binding.tvItemName.transitionName = "name$position"
@@ -60,12 +60,12 @@ class StoryListAdapter(
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoryItem>() {
-            override fun areItemsTheSame(oldItem: StoryItem, newItem: StoryItem): Boolean {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoriesEntity>() {
+            override fun areItemsTheSame(oldItem: StoriesEntity, newItem: StoriesEntity): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: StoryItem, newItem: StoryItem): Boolean {
+            override fun areContentsTheSame(oldItem: StoriesEntity, newItem: StoriesEntity): Boolean {
                 return oldItem.id == newItem.id
             }
         }

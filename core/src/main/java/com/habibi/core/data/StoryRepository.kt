@@ -1,8 +1,11 @@
 package com.habibi.core.data
 
+import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.habibi.core.data.source.local.entity.StoriesEntity
+import com.habibi.core.data.source.local.room.StoryDatabase
 import com.habibi.core.data.source.preference.UserSessionDataStore
 import com.habibi.core.data.source.remote.RemoteDataSource
 import com.habibi.core.data.source.remote.network.ApiResponse
@@ -20,7 +23,8 @@ import okhttp3.RequestBody.Companion.toRequestBody
 class StoryRepository @Inject constructor(
     private val userSessionDataStore: UserSessionDataStore,
     private val remoteDataSource: RemoteDataSource,
-    private val quotePagingSource: QuotePagingSource
+    private val storyRemoteMediator: StoryRemoteMediator,
+    private val database: StoryDatabase
 ): IStoryRepository {
 
     override suspend fun getUserName(): String =
@@ -52,12 +56,16 @@ class StoryRepository @Inject constructor(
                 }
         }.result()
 
-    override fun getStoryPaging() : Flow<PagingData<StoryItem>> {
+    override fun getStoryPaging() : Flow<PagingData<StoriesEntity>> {
+        @OptIn(ExperimentalPagingApi::class)
         return Pager(
             config = PagingConfig(
                 pageSize = NETWORK_PAGE_SIZE
             ),
-            pagingSourceFactory = { quotePagingSource }
+            remoteMediator = storyRemoteMediator,
+            pagingSourceFactory = {
+                database.storyDao().getAllStories()
+            }
         ).flow
     }
 

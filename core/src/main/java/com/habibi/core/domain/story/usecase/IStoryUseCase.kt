@@ -2,6 +2,7 @@ package com.habibi.core.domain.story.usecase
 
 import androidx.paging.PagingData
 import com.habibi.core.data.Resource
+import com.habibi.core.data.source.local.entity.StoriesEntity
 import com.habibi.core.domain.story.data.StoryItem
 import java.io.File
 import kotlinx.coroutines.flow.Flow
@@ -16,6 +17,6 @@ interface IStoryUseCase {
 
     suspend fun postNewStory(photoFile: File, description: String): Resource<Unit>
 
-    fun getStoryPaging() : Flow<PagingData<StoryItem>>
+    fun getStoryPaging() : Flow<PagingData<StoriesEntity>>
 
 }

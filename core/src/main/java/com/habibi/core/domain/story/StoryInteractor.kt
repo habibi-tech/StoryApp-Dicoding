@@ -2,6 +2,7 @@ package com.habibi.core.domain.story
 
 import androidx.paging.PagingData
 import com.habibi.core.data.Resource
+import com.habibi.core.data.source.local.entity.StoriesEntity
 import com.habibi.core.domain.repository.IStoryRepository
 import com.habibi.core.domain.repository.IUserSessionRepository
 import com.habibi.core.domain.story.data.StoryItem
@@ -32,7 +33,7 @@ class StoryInteractor @Inject constructor(
         return storyRepository.postNewStory(photoFile, description)
     }
 
-    override fun getStoryPaging(): Flow<PagingData<StoryItem>> {
+    override fun getStoryPaging(): Flow<PagingData<StoriesEntity>> {
         return storyRepository.getStoryPaging()
     }
 

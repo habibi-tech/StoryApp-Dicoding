@@ -11,7 +11,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
-import com.habibi.core.domain.story.data.StoryItem
+import com.habibi.core.data.source.local.entity.StoriesEntity
 import com.habibi.storyapp.R
 import com.habibi.storyapp.databinding.FragmentStoryListBinding
 import com.habibi.storyapp.databinding.ItemStoryBinding
@@ -149,7 +149,7 @@ class StoryListFragment : Fragment() {
         })
     }
 
-    private fun goToStoryDetail(item: StoryItem, itemStoryBinding: ItemStoryBinding) {
+    private fun goToStoryDetail(item: StoriesEntity, itemStoryBinding: ItemStoryBinding) {
         val action = StoryListFragmentDirections.actionStoryListFragmentToStoryDetailFragment()
 
         val extras = FragmentNavigatorExtras(
