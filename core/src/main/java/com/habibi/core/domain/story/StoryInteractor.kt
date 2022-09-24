@@ -1,5 +1,6 @@
 package com.habibi.core.domain.story
 
+import androidx.paging.PagingData
 import com.habibi.core.data.Resource
 import com.habibi.core.domain.repository.IStoryRepository
 import com.habibi.core.domain.repository.IUserSessionRepository
@@ -7,6 +8,7 @@ import com.habibi.core.domain.story.data.StoryItem
 import com.habibi.core.domain.story.usecase.IStoryUseCase
 import java.io.File
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
 class StoryInteractor @Inject constructor(
     private val storyRepository: IStoryRepository,
@@ -28,6 +30,10 @@ class StoryInteractor @Inject constructor(
         description: String
     ): Resource<Unit> {
         return storyRepository.postNewStory(photoFile, description)
+    }
+
+    override fun getStoryPaging(): Flow<PagingData<StoryItem>> {
+        return storyRepository.getStoryPaging()
     }
 
 }

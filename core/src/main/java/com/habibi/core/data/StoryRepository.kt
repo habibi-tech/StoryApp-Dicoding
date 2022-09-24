@@ -1,6 +1,9 @@
 package com.habibi.core.data
 
-import com.habibi.core.data.source.local.UserSessionDataStore
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import com.habibi.core.data.source.preference.UserSessionDataStore
 import com.habibi.core.data.source.remote.RemoteDataSource
 import com.habibi.core.data.source.remote.network.ApiResponse
 import com.habibi.core.data.source.remote.response.ListStoryItem
@@ -10,12 +13,14 @@ import com.habibi.core.utils.convertToMultiPart
 import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
+import kotlinx.coroutines.flow.Flow
 import okhttp3.RequestBody.Companion.toRequestBody
 
 @Singleton
 class StoryRepository @Inject constructor(
     private val userSessionDataStore: UserSessionDataStore,
-    private val remoteDataSource: RemoteDataSource
+    private val remoteDataSource: RemoteDataSource,
+    private val quotePagingSource: QuotePagingSource
 ): IStoryRepository {
 
     override suspend fun getUserName(): String =
@@ -46,4 +51,17 @@ class StoryRepository @Inject constructor(
                     )
                 }
         }.result()
+
+    override fun getStoryPaging() : Flow<PagingData<StoryItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = NETWORK_PAGE_SIZE
+            ),
+            pagingSourceFactory = { quotePagingSource }
+        ).flow
+    }
+
+    companion object {
+        const val NETWORK_PAGE_SIZE = 10
+    }
 }

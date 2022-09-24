@@ -1,4 +1,4 @@
-package com.habibi.core.data.source.local.constant
+package com.habibi.core.data.source.preference.constant
 
 object UserSessionConstant {
 

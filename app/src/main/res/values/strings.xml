@@ -21,4 +21,5 @@
     <string name="data_empty">Data empty!</string>
     <string name="permission_denied">Permission denied!</string>
     <string name="preview_image">Image Story</string>
+    <string name="failed_fetch_data">Failed fetch data!</string>
 </resources>

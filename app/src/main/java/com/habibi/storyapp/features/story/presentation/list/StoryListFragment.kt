@@ -6,15 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
+import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
-import com.habibi.core.data.Resource
 import com.habibi.core.domain.story.data.StoryItem
 import com.habibi.storyapp.R
 import com.habibi.storyapp.databinding.FragmentStoryListBinding
 import com.habibi.storyapp.databinding.ItemStoryBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class StoryListFragment : Fragment() {
@@ -30,18 +32,50 @@ class StoryListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentStoryListBinding.inflate(inflater, container, false)
         return binding.root
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        setUpRecyclerView()
+        layoutStateHandler()
         setUpFabExtend()
         initObserver()
         initListener()
+    }
+
+    private fun setUpRecyclerView() {
+        adapter = StoryListAdapter { itemData, itemBinding ->
+            goToStoryDetail(itemData, itemBinding)
+        }
+
+        binding.rvStoryList.adapter = adapter?.withLoadStateFooter(
+            footer = LoadingStateAdapter {
+                adapter?.retry()
+            }
+        )
+    }
+
+    private fun layoutStateHandler() {
+        lifecycleScope.launch {
+            adapter?.loadStateFlow?.collect { loadState ->
+                when {
+                    loadState.source.refresh is LoadState.NotLoading && adapter?.itemCount == 0 -> {
+                        onEmpty()
+                    }
+                    loadState.source.refresh is LoadState.NotLoading || loadState.mediator?.refresh is LoadState.NotLoading -> {
+                        onSuccess()
+                    }
+                    loadState.source.refresh is LoadState.Loading -> {
+                        onLoading()
+                    }
+                    loadState.source.refresh is LoadState.Error && adapter?.itemCount == 0 -> {
+                        onError(R.string.failed_fetch_data)
+                    }
+                }
+            }
+        }
     }
 
     private fun initListener() {
@@ -50,26 +84,13 @@ class StoryListFragment : Fragment() {
         }
 
         binding.btnStoryListReload.setOnClickListener {
-            viewModel.getListStory()
+            adapter?.retry()
         }
     }
 
     private fun initObserver() {
-        viewModel.listStory.observe(viewLifecycleOwner) {
-            when (it) {
-                is Resource.Loading -> {
-                    onLoading()
-                }
-                is Resource.Success -> {
-                    onSuccess(it.data)
-                }
-                is Resource.Failed -> {
-                    onFailed(it.message)
-                }
-                is Resource.Error -> {
-                    onError(it.messageResource)
-                }
-            }
+        viewModel.getListPaging.observe(viewLifecycleOwner) {
+            adapter?.submitData(lifecycle, it)
         }
     }
 
@@ -82,32 +103,12 @@ class StoryListFragment : Fragment() {
         }
     }
 
-    private fun onSuccess(listData: List<StoryItem>?) {
-
+    private fun onSuccess() {
         binding.apply {
             groupStoryListError.visibility = View.GONE
             rvStoryList.visibility = View.VISIBLE
             pbStoryList.visibility = View.GONE
             fabStoryList.visibility = View.VISIBLE
-        }
-
-        listData?.let {
-            if (it.isEmpty())
-                onEmpty()
-            else
-                setUpRecyclerView(it)
-        }
-    }
-
-    private fun onFailed(message: String) {
-        binding.apply {
-            groupStoryListError.visibility = View.VISIBLE
-            rvStoryList.visibility = View.GONE
-            pbStoryList.visibility = View.GONE
-            fabStoryList.visibility = View.GONE
-
-            tvStoryListMessageError.text = message
-            ivStoryListImageError.setImageResource(R.drawable.ic_sentiment_very_dissatisfied)
         }
     }
 
@@ -146,15 +147,6 @@ class StoryListFragment : Fragment() {
                 }
             }
         })
-    }
-
-    private fun setUpRecyclerView(listData: List<StoryItem>) {
-        adapter = StoryListAdapter(listData) { itemData, itemBinding ->
-            goToStoryDetail(itemData, itemBinding)
-        }
-        binding.rvStoryList.adapter = adapter
-        binding.rvStoryList.adapter?.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-
     }
 
     private fun goToStoryDetail(item: StoryItem, itemStoryBinding: ItemStoryBinding) {

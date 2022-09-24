@@ -1,6 +1,6 @@
 package com.habibi.core.data
 
-import com.habibi.core.data.source.local.UserSessionDataStore
+import com.habibi.core.data.source.preference.UserSessionDataStore
 import com.habibi.core.data.source.remote.RemoteDataSource
 import com.habibi.core.data.source.remote.network.ApiResponse
 import com.habibi.core.data.source.remote.response.ListStoryItem

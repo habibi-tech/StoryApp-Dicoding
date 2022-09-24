@@ -77,7 +77,9 @@ class RemoteDataSource @Inject constructor(
                 dataResponse.listStory
             override suspend fun createCall(): Response<ListStoryResponse> =
                 apiService.getListStories(
-                    mapOf("Authorization" to "Bearer $token")
+                    mapOf("Authorization" to "Bearer $token"),
+                    1,
+                    10
                 )
         }.result()
 

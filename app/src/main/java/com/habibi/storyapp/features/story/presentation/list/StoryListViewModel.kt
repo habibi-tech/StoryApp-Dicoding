@@ -3,8 +3,12 @@ package com.habibi.storyapp.features.story.presentation.list
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
 import com.habibi.core.data.Resource
+import com.habibi.core.data.source.remote.response.ListStoryItem
 import com.habibi.core.domain.story.data.StoryItem
 import com.habibi.core.domain.story.usecase.IStoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,7 +25,7 @@ class StoryListViewModel @Inject constructor(
     val listStory: LiveData<Resource<List<StoryItem>>> get() = _listStory
 
     init {
-        getListStory()
+        //getListStory()
     }
 
     fun getListStory() {
@@ -30,4 +34,7 @@ class StoryListViewModel @Inject constructor(
             _listStory.postValue(useCase.getListStory())
         }
     }
+
+    val getListPaging: LiveData<PagingData<StoryItem>> =
+        useCase.getStoryPaging().cachedIn(viewModelScope).asLiveData()
 }

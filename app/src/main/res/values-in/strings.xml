@@ -22,4 +22,5 @@
     <string name="data_empty">Data kosong!</string>
     <string name="permission_denied">Permission ditolak!</string>
     <string name="preview_image">Gambar cerita</string>
+    <string name="failed_fetch_data">Gagal mengambil data!</string>
 </resources>

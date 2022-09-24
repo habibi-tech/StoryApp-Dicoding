@@ -2,15 +2,16 @@ package com.habibi.storyapp.features.story.presentation.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.habibi.core.domain.story.data.StoryItem
 import com.habibi.core.utils.setImage
 import com.habibi.storyapp.databinding.ItemStoryBinding
 
 class StoryListAdapter(
-    private val data: List<StoryItem>,
     private val onClick: (StoryItem, ItemStoryBinding) -> Unit
-): RecyclerView.Adapter<StoryListAdapter.ViewHolder>() {
+): PagingDataAdapter<StoryItem, StoryListAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = ItemStoryBinding.inflate(
@@ -22,12 +23,9 @@ class StoryListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
+        val item = getItem(position)
         holder.bind(item, position)
     }
-
-    override fun getItemCount(): Int =
-        data.size
 
     inner class ViewHolder(
         private val binding: ItemStoryBinding,
@@ -44,7 +42,7 @@ class StoryListAdapter(
             }
         }
 
-        fun bind(item: StoryItem, position: Int){
+        fun bind(item: StoryItem?, position: Int){
 
             binding.ivItemPhoto.transitionName = "image$position"
             binding.tvItemName.transitionName = "name$position"
@@ -53,11 +51,23 @@ class StoryListAdapter(
             currentItem = item
 
             binding.apply {
-                tvItemName.text = item.name
-                tvItemDescription.text = item.description
+                tvItemName.text = item?.name
+                tvItemDescription.text = item?.description
             }
 
-            binding.ivItemPhoto.setImage(item.photoUrl)
+            binding.ivItemPhoto.setImage(item?.photoUrl)
+        }
+    }
+
+    companion object {
+        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoryItem>() {
+            override fun areItemsTheSame(oldItem: StoryItem, newItem: StoryItem): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(oldItem: StoryItem, newItem: StoryItem): Boolean {
+                return oldItem.id == newItem.id
+            }
         }
     }
 

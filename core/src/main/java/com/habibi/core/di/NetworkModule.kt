@@ -13,6 +13,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import java.util.concurrent.TimeUnit
+import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,9 +22,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
 
+    @Singleton
     @Provides
     fun provideGson() = Gson()
 
+    @Singleton
     @Provides
     fun provideOkHttpClient(@ApplicationContext context: Context): OkHttpClient {
 
@@ -48,6 +51,7 @@ class NetworkModule {
 
     }
 
+    @Singleton
     @Provides
     fun provideApiService(client: OkHttpClient): ApiService {
         val retrofit = Retrofit.Builder()
