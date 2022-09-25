@@ -22,4 +22,7 @@
     <string name="permission_denied">Permission denied!</string>
     <string name="preview_image">Image Story</string>
     <string name="failed_fetch_data">Failed fetch data!</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="nearby">Nearby</string>
+    <string name="location_format">Address:\n%s\n\nLat: %f\nLon: %f</string>
 </resources>

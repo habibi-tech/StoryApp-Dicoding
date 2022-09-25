@@ -71,6 +71,26 @@
 
         </com.habibi.core.custom_view.TextFieldLayout>
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cv_add_location"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ed_wrap_story_add_description">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tv_add_location_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_8dp"
+                android:drawableStart="@drawable/ic_location_on"
+                android:drawablePadding="@dimen/space_8dp"
+                android:text="@string/location_format" />
+
+        </com.google.android.material.card.MaterialCardView>
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_add"
             android:layout_width="0dp"
@@ -79,7 +99,7 @@
             android:layout_marginTop="@dimen/space_16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ed_wrap_story_add_description" />
+            app:layout_constraintTop_toBottomOf="@+id/cv_add_location" />
 
         <ProgressBar
             android:id="@+id/pb_story_add"

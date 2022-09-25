@@ -29,8 +29,22 @@ class StoryAddViewModel @Inject constructor(
     private var _currentPhotoPath: String = ""
     val currentPhotoPath get() = _currentPhotoPath
 
+    private var _currentLatitude: Float? = null
+    val currentLatitude get() = _currentLatitude
+
+    private var _currentLongitude: Float? = null
+    val currentLongitude get() = _currentLongitude
+
     fun setCurrentPhotoPath(path: String) {
         _currentPhotoPath = path
+    }
+
+    fun setCurrentLatitude(latitude: Float?) {
+        _currentLatitude = latitude
+    }
+
+    fun setCurrentLongitude(longitude: Float?) {
+        _currentLongitude = longitude
     }
 
     fun checkFieldValidation(file: File?, descriptionError: CharSequence?, description: String) {
@@ -41,7 +55,7 @@ class StoryAddViewModel @Inject constructor(
     fun postNewStory(description: String) {
         _newStory.value = Resource.Loading()
         viewModelScope.launch(Dispatchers.IO) {
-            _newStory.postValue(useCase.postNewStory(photoFile.value!!, description))
+            _newStory.postValue(useCase.postNewStory(photoFile.value!!, description, currentLatitude, currentLongitude))
         }
     }
 

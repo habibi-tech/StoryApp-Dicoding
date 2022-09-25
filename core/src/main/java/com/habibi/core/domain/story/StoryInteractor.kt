@@ -23,14 +23,16 @@ class StoryInteractor @Inject constructor(
     override suspend fun getUserName(): String =
         userSessionRepository.getUserName()
 
-    override suspend fun getListStory(): Resource<List<StoryItem>> =
-        storyRepository.getListStory()
+    override suspend fun getListStoryWithLocation(): Resource<List<StoryItem>> =
+        storyRepository.getListStoryWithLocation()
 
     override suspend fun postNewStory(
         photoFile: File,
-        description: String
+        description: String,
+        latitude: Float?,
+        longitude: Float?
     ): Resource<Unit> {
-        return storyRepository.postNewStory(photoFile, description)
+        return storyRepository.postNewStory(photoFile, description, latitude, longitude)
     }
 
     override fun getStoryPaging(): Flow<PagingData<StoriesEntity>> {

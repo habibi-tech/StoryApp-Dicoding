@@ -49,7 +49,7 @@ class RemoteDataSource @Inject constructor(
                 apiService.postLogin(email, password)
         }.result()
 
-    suspend fun postNewStory(token: String, photo: MultipartBody.Part, description: RequestBody): ApiResponse<Unit> =
+    suspend fun postNewStory(token: String, photo: MultipartBody.Part, description: RequestBody, latitude: RequestBody?, longitude: RequestBody?): ApiResponse<Unit> =
         object : RemoteResource<Unit, NewStoryResponse>() {
             override suspend fun dataResponseFailed(stringJson: String): NewStoryResponse =
                 gson.fromJson(stringJson, NewStoryResponse::class.java)
@@ -62,10 +62,10 @@ class RemoteDataSource @Inject constructor(
             override suspend fun createCall(): Response<NewStoryResponse> =
                 apiService.postNewStory(
                     mapOf("Authorization" to "Bearer $token"),
-                    photo, description)
+                    photo, description, latitude, longitude)
         }.result()
 
-    suspend fun getListStories(token: String): ApiResponse<List<ListStoryItem>> =
+    suspend fun getListStories(token: String, location: Int? = null): ApiResponse<List<ListStoryItem>> =
         object : RemoteResource<List<ListStoryItem>, ListStoryResponse>() {
             override suspend fun dataResponseFailed(stringJson: String): ListStoryResponse =
                 gson.fromJson(stringJson, ListStoryResponse::class.java)
@@ -77,9 +77,8 @@ class RemoteDataSource @Inject constructor(
                 dataResponse.listStory
             override suspend fun createCall(): Response<ListStoryResponse> =
                 apiService.getListStories(
-                    mapOf("Authorization" to "Bearer $token"),
-                    1,
-                    10
+                    header = mapOf("Authorization" to "Bearer $token"),
+                    location = location
                 )
         }.result()
 

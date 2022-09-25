@@ -11,9 +11,9 @@ interface IStoryRepository {
 
     suspend fun getUserName(): String
 
-    suspend fun postNewStory(photoFile: File, description: String): Resource<Unit>
+    suspend fun postNewStory(photoFile: File, description: String, latitude: Float?, longitude: Float?): Resource<Unit>
 
-    suspend fun getListStory(): Resource<List<StoryItem>>
+    suspend fun getListStoryWithLocation(): Resource<List<StoryItem>>
 
     fun getStoryPaging() : Flow<PagingData<StoriesEntity>>
 

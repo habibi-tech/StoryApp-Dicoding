@@ -23,4 +23,7 @@
     <string name="permission_denied">Permission ditolak!</string>
     <string name="preview_image">Gambar cerita</string>
     <string name="failed_fetch_data">Gagal mengambil data!</string>
+    <string name="dashboard">Beranda</string>
+    <string name="nearby">Terdekat</string>
+    <string name="location_format">Alamat: %s\nLat: %f, Lon: %f</string>
 </resources>

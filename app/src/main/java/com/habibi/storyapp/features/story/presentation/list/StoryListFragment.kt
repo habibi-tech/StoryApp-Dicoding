@@ -11,6 +11,7 @@ import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.RecyclerView
+import com.habibi.core.data.StoryRepository
 import com.habibi.core.data.source.local.entity.StoriesEntity
 import com.habibi.storyapp.R
 import com.habibi.storyapp.databinding.FragmentStoryListBinding
@@ -66,6 +67,9 @@ class StoryListFragment : Fragment() {
                     }
                     loadState.source.refresh is LoadState.NotLoading || loadState.mediator?.refresh is LoadState.NotLoading -> {
                         onSuccess()
+                        if (adapter?.itemCount == StoryRepository.NETWORK_PAGE_SIZE) {
+                            binding.rvStoryList.scrollToPosition(0)
+                        }
                     }
                     loadState.source.refresh is LoadState.Loading -> {
                         onLoading()

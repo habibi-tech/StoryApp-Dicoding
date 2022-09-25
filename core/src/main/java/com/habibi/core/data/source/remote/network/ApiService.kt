@@ -38,14 +38,17 @@ interface ApiService {
     suspend fun postNewStory(
         @HeaderMap header: Map<String, String>,
         @Part photo: MultipartBody.Part,
-        @Part("description") description: RequestBody
+        @Part("description") description: RequestBody,
+        @Part("lat") lat: RequestBody? = null,
+        @Part("lon") lon: RequestBody? = null
     ): Response<NewStoryResponse>
 
     @GET("stories")
     suspend fun getListStories(
         @HeaderMap header: Map<String, String>,
-        @Query("page") page: Int,
-        @Query("size") size: Int
+        @Query("page") page: Int? = null,
+        @Query("size") size: Int? = null,
+        @Query("location") location: Int? = null
     ): Response<ListStoryResponse>
 
 }

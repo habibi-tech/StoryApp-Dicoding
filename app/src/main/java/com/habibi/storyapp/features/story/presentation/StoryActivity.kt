@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -19,6 +20,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.habibi.core.utils.showToast
 import com.habibi.storyapp.R
@@ -27,7 +30,6 @@ import com.habibi.storyapp.features.story.presentation.add.StoryAddFragment
 import com.habibi.storyapp.features.story.presentation.detail.StoryDetailFragment
 import com.habibi.storyapp.features.story.presentation.list.StoryListFragment
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class StoryActivity : AppCompatActivity() {
@@ -48,6 +50,31 @@ class StoryActivity : AppCompatActivity() {
         setNavigation()
         viewModel.getUserName()
         requestPermissions()
+        setBottomNavigation()
+    }
+
+    private fun setBottomNavigation() {
+        val heightNavView = binding.navView.height.toFloat()
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            when(destination.id) {
+                R.id.StoryDetailFragment -> {
+                    binding.navView.setVisibilityWithAnimation(false, heightNavView)
+                }
+                R.id.storyAddFragment -> {
+                    binding.navView.setVisibilityWithAnimation(false, heightNavView)
+                }
+                else -> {
+                    binding.navView.setVisibilityWithAnimation(true, heightNavView)
+                }
+            }
+        }
+    }
+
+    private fun BottomNavigationView.setVisibilityWithAnimation(isShow: Boolean, height: Float) {
+        this.animate()
+            .translationY(if (isShow) 0F else height)
+            .alpha(if (isShow) 1.0F else 0.0F)
+        this.visibility = if (isShow) View.VISIBLE else View.GONE
     }
 
     private fun setNavigation() {
@@ -55,7 +82,7 @@ class StoryActivity : AppCompatActivity() {
         navController = navHostFragment.navController
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
-
+        binding.navView.setupWithNavController(navController)
     }
 
     private fun requestPermissions() {
@@ -69,7 +96,7 @@ class StoryActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(R.menu.menu_app_bar, menu)
         return true
     }
 
@@ -165,7 +192,9 @@ class StoryActivity : AppCompatActivity() {
 
     companion object {
         private val REQUIRED_PERMISSIONS = arrayOf(
-            Manifest.permission.CAMERA
+            Manifest.permission.CAMERA,
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION
         )
         private const val REQUEST_CODE_PERMISSIONS = 10
     }

@@ -1,9 +1,11 @@
 package com.habibi.storyapp.features.story.presentation.add
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.Intent.ACTION_GET_CONTENT
 import android.graphics.BitmapFactory
+import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -16,8 +18,11 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.habibi.core.data.Resource
 import com.habibi.core.utils.createCustomTempFile
+import com.habibi.core.utils.getAddressName
 import com.habibi.core.utils.showSnackBar
 import com.habibi.core.utils.toFile
 import com.habibi.storyapp.BuildConfig
@@ -33,6 +38,8 @@ class StoryAddFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val viewModel: StoryAddViewModel by viewModels()
+
+    private var fusedLocationClient: FusedLocationProviderClient? = null
 
     private val launcherIntentGallery = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -66,6 +73,26 @@ class StoryAddFragment : Fragment() {
         initListener()
         initObserver()
         initEditTextChangeListener()
+        getLastLocation()
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun getLastLocation() {
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        fusedLocationClient?.lastLocation
+            ?.addOnSuccessListener { location : Location? ->
+                location?.let {
+                    viewModel.setCurrentLatitude(it.latitude.toFloat())
+                    viewModel.setCurrentLongitude(it.longitude.toFloat())
+                    showLocation(it.latitude, it.longitude)
+                }
+            }
+    }
+
+    private fun showLocation(latitude: Double, longitude: Double) {
+        val address = requireActivity().getAddressName(latitude, longitude)
+        binding.tvAddLocationTitle.text = getString(R.string.location_format, address, viewModel.currentLatitude, viewModel.currentLongitude)
+        binding.cvAddLocation.visibility = View.VISIBLE
     }
 
     private fun initEditTextChangeListener() {

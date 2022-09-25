@@ -30,28 +30,33 @@ class StoryRepository @Inject constructor(
     override suspend fun getUserName(): String =
         userSessionDataStore.getUserName()
 
-    override suspend fun postNewStory(photoFile: File, description: String): Resource<Unit> =
+    override suspend fun postNewStory(photoFile: File, description: String, latitude: Float?, longitude: Float?): Resource<Unit> =
         object : NetworkResource<Unit, Unit>() {
             override suspend fun createCall(): ApiResponse<Unit> {
 
                 val multipartBody = photoFile.convertToMultiPart()
-                val requestBodyDesc = description.toRequestBody()
+                val rbDesc = description.toRequestBody()
+                val rbLat = latitude?.toString()?.toRequestBody()
+                val rbLon = longitude?.toString()?.toRequestBody()
 
-                return remoteDataSource.postNewStory(userSessionDataStore.getToken(), multipartBody, requestBodyDesc)
+                return remoteDataSource.postNewStory(userSessionDataStore.getToken(), multipartBody, rbDesc, rbLat, rbLon)
             }
             override suspend fun onSuccess(data: Unit) {}
         }.result()
 
-    override suspend fun getListStory(): Resource<List<StoryItem>> =
+    override suspend fun getListStoryWithLocation(): Resource<List<StoryItem>> =
         object : NetworkResource<List<StoryItem>, List<ListStoryItem>>() {
             override suspend fun createCall(): ApiResponse<List<ListStoryItem>> =
-                remoteDataSource.getListStories(userSessionDataStore.getToken())
+                remoteDataSource.getListStories(userSessionDataStore.getToken(), 1)
             override suspend fun onSuccess(data: List<ListStoryItem>): List<StoryItem> =
                 data.map {
                     StoryItem(
-                        it.photoUrl,
-                        it.name,
-                        it.description
+                        id = it.id,
+                        photoUrl = it.photoUrl,
+                        name = it.name,
+                        description = it.description,
+                        lat = it.lat,
+                        lon = it.lon
                     )
                 }
         }.result()
