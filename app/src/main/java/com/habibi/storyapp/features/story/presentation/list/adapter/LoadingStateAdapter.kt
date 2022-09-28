@@ -1,4 +1,4 @@
-package com.habibi.storyapp.features.story.presentation.list
+package com.habibi.storyapp.features.story.presentation.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

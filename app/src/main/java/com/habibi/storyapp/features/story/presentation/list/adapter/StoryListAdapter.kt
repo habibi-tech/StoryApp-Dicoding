@@ -1,4 +1,4 @@
-package com.habibi.storyapp.features.story.presentation.list
+package com.habibi.storyapp.features.story.presentation.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -60,7 +60,7 @@ class StoryListAdapter(
     }
 
     companion object {
-        private val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoriesEntity>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<StoriesEntity>() {
             override fun areItemsTheSame(oldItem: StoriesEntity, newItem: StoriesEntity): Boolean {
                 return oldItem == newItem
             }

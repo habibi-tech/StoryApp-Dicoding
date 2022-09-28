@@ -36,10 +36,10 @@ class RegisterViewModel @Inject constructor(
             passwordError.isNullOrEmpty() && password.isNotEmpty()
     }
 
-    fun postRegister(name: String, email: String, password: String) {
-        _register.value = Resource.Loading()
-        viewModelScope.launch(Dispatchers.IO) {
-            _register.postValue(useCase.postRegister(name, email, password))
+    fun postRegister(name: String, email: String, password: String) = viewModelScope.launch(Dispatchers.IO) {
+        _register.apply {
+            postValue(Resource.Loading())
+            postValue(useCase.postRegister(name, email, password))
         }
     }
 

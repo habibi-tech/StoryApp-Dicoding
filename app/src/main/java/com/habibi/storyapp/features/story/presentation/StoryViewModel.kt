@@ -16,16 +16,12 @@ class StoryViewModel @Inject constructor(
     private var _userName = ""
     val userName get() = _userName
 
-    fun setUserNotLogin() {
-        viewModelScope.launch(Dispatchers.IO) {
-            useCase.setUserLogout()
-        }
+    fun setUserNotLogin() = viewModelScope.launch(Dispatchers.IO) {
+        useCase.setUserLogout()
     }
 
-    fun getUserName() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _userName = useCase.getUserName()
-        }
+    fun getUserName() = viewModelScope.launch(Dispatchers.IO) {
+        _userName = useCase.getUserName()
     }
 
 }

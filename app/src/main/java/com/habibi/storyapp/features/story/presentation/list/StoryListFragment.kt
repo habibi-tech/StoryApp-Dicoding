@@ -16,6 +16,8 @@ import com.habibi.core.data.source.local.entity.StoriesEntity
 import com.habibi.storyapp.R
 import com.habibi.storyapp.databinding.FragmentStoryListBinding
 import com.habibi.storyapp.databinding.ItemStoryBinding
+import com.habibi.storyapp.features.story.presentation.list.adapter.LoadingStateAdapter
+import com.habibi.storyapp.features.story.presentation.list.adapter.StoryListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -23,7 +25,7 @@ import kotlinx.coroutines.launch
 class StoryListFragment : Fragment() {
 
     private var _binding: FragmentStoryListBinding? = null
-    private val binding get() = _binding!!
+    private val binding get() = _binding
 
     private var adapter: StoryListAdapter? = null
 
@@ -32,9 +34,9 @@ class StoryListFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentStoryListBinding.inflate(inflater, container, false)
-        return binding.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -51,7 +53,7 @@ class StoryListFragment : Fragment() {
             goToStoryDetail(itemData, itemBinding)
         }
 
-        binding.rvStoryList.adapter = adapter?.withLoadStateFooter(
+        binding?.rvStoryList?.adapter = adapter?.withLoadStateFooter(
             footer = LoadingStateAdapter {
                 adapter?.retry()
             }
@@ -68,7 +70,7 @@ class StoryListFragment : Fragment() {
                     loadState.source.refresh is LoadState.NotLoading || loadState.mediator?.refresh is LoadState.NotLoading -> {
                         onSuccess()
                         if (adapter?.itemCount == StoryRepository.NETWORK_PAGE_SIZE) {
-                            binding.rvStoryList.scrollToPosition(0)
+                            binding?.rvStoryList?.scrollToPosition(0)
                         }
                     }
                     loadState.source.refresh is LoadState.Loading -> {
@@ -83,11 +85,11 @@ class StoryListFragment : Fragment() {
     }
 
     private fun initListener() {
-        binding.fabStoryList.setOnClickListener {
+        binding?.fabStoryList?.setOnClickListener {
             findNavController().navigate(R.id.action_StoryListFragment_to_storyAddFragment)
         }
 
-        binding.btnStoryListReload.setOnClickListener {
+        binding?.btnStoryListReload?.setOnClickListener {
             adapter?.retry()
         }
     }
@@ -99,7 +101,7 @@ class StoryListFragment : Fragment() {
     }
 
     private fun onLoading() {
-        binding.apply {
+        binding?.apply {
             groupStoryListError.visibility = View.GONE
             rvStoryList.visibility = View.GONE
             pbStoryList.visibility = View.VISIBLE
@@ -108,7 +110,7 @@ class StoryListFragment : Fragment() {
     }
 
     private fun onSuccess() {
-        binding.apply {
+        binding?.apply {
             groupStoryListError.visibility = View.GONE
             rvStoryList.visibility = View.VISIBLE
             pbStoryList.visibility = View.GONE
@@ -117,7 +119,7 @@ class StoryListFragment : Fragment() {
     }
 
     private fun onEmpty() {
-        binding.apply {
+        binding?.apply {
             groupStoryListError.visibility = View.VISIBLE
             rvStoryList.visibility = View.GONE
             pbStoryList.visibility = View.GONE
@@ -129,7 +131,7 @@ class StoryListFragment : Fragment() {
     }
 
     private fun onError(messageResource: Int) {
-        binding.apply {
+        binding?.apply {
             groupStoryListError.visibility = View.VISIBLE
             rvStoryList.visibility = View.GONE
             pbStoryList.visibility = View.GONE
@@ -141,13 +143,13 @@ class StoryListFragment : Fragment() {
     }
 
     private fun setUpFabExtend() {
-        binding.rvStoryList.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+        binding?.rvStoryList?.addOnScrollListener(object : RecyclerView.OnScrollListener(){
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (dy > 0) {
-                    binding.fabStoryList.shrink()
+                    binding?.fabStoryList?.shrink()
                 } else if (dy < 0) {
-                    binding.fabStoryList.extend()
+                    binding?.fabStoryList?.extend()
                 }
             }
         })

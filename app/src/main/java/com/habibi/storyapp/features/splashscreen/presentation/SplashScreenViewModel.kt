@@ -22,10 +22,8 @@ class SplashScreenViewModel @Inject constructor(
         isLoggedIn()
     }
 
-    private fun isLoggedIn() {
-        viewModelScope.launch(Dispatchers.IO) {
-            _isLoggedIn.postValue(useCase.isLoggedIn())
-        }
+    private fun isLoggedIn() = viewModelScope.launch(Dispatchers.IO) {
+        _isLoggedIn.postValue(useCase.isLoggedIn())
     }
 
 }

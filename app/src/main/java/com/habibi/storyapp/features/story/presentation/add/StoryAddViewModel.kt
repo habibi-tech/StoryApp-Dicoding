@@ -47,16 +47,14 @@ class StoryAddViewModel @Inject constructor(
         _currentLongitude = longitude
     }
 
-    fun checkFieldValidation(file: File?, descriptionError: CharSequence?, description: String) {
+    fun checkFieldValidation(file: File?, descriptionError: String?, description: String) {
         file?.let { _photoFile.value = it }
         _fieldValid.value = descriptionError.isNullOrEmpty() && description.isNotEmpty() && _photoFile.value != null
     }
 
-    fun postNewStory(description: String) {
-        _newStory.value = Resource.Loading()
-        viewModelScope.launch(Dispatchers.IO) {
-            _newStory.postValue(useCase.postNewStory(photoFile.value!!, description, currentLatitude, currentLongitude))
-        }
+    fun postNewStory(description: String) = viewModelScope.launch(Dispatchers.IO) {
+        _newStory.postValue(Resource.Loading())
+        _newStory.postValue(useCase.postNewStory(photoFile.value!!, description, currentLatitude, currentLongitude))
     }
 
 }

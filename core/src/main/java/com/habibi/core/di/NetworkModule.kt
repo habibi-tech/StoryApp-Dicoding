@@ -5,7 +5,7 @@ import com.chuckerteam.chucker.api.ChuckerCollector
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.chuckerteam.chucker.api.RetentionManager
 import com.google.gson.Gson
-import com.habibi.core.BuildConfig
+import com.habibi.core.data.source.remote.network.ApiConstant
 import com.habibi.core.data.source.remote.network.ApiService
 import dagger.Module
 import dagger.Provides
@@ -55,7 +55,7 @@ class NetworkModule {
     @Provides
     fun provideApiService(client: OkHttpClient): ApiService {
         val retrofit = Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(ApiConstant.baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

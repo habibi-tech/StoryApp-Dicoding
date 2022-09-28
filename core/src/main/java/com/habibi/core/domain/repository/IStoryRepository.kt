@@ -9,8 +9,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface IStoryRepository {
 
-    suspend fun getUserName(): String
-
     suspend fun postNewStory(photoFile: File, description: String, latitude: Float?, longitude: Float?): Resource<Unit>
 
     suspend fun getListStoryWithLocation(): Resource<List<StoryItem>>

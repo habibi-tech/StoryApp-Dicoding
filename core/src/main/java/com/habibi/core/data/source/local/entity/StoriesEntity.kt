@@ -10,15 +10,15 @@ data class StoriesEntity(
 
     @PrimaryKey
     @ColumnInfo(name = "id")
-    val id: String,
+    val id: String = "",
 
     @ColumnInfo(name = "photoUrl")
-    val photoUrl: String,
+    val photoUrl: String = "",
 
     @ColumnInfo(name = "name")
-    val name: String,
+    val name: String = "",
 
     @ColumnInfo(name = "description")
-    val description: String
+    val description: String = ""
 
 )

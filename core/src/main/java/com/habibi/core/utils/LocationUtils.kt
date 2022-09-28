@@ -5,8 +5,8 @@ import android.location.Geocoder
 import java.io.IOException
 import java.util.Locale
 
-fun Context.getAddressName(lat: Double, lon: Double): String? {
-    var addressName: String? = null
+fun Context.getAddressName(lat: Double, lon: Double): String {
+    var addressName = ""
     val geocoder = Geocoder(this, Locale.getDefault())
     try {
         val list = geocoder.getFromLocation(lat, lon, 1)

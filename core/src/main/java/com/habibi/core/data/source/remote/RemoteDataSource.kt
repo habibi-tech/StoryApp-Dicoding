@@ -9,10 +9,11 @@ import com.habibi.core.data.source.remote.response.LoginResponse
 import com.habibi.core.data.source.remote.response.LoginResult
 import com.habibi.core.data.source.remote.response.NewStoryResponse
 import com.habibi.core.data.source.remote.response.RegisterResponse
+import com.habibi.core.utils.convertToMultiPart
+import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import retrofit2.Response
 
 @Singleton
@@ -49,7 +50,7 @@ class RemoteDataSource @Inject constructor(
                 apiService.postLogin(email, password)
         }.result()
 
-    suspend fun postNewStory(token: String, photo: MultipartBody.Part, description: RequestBody, latitude: RequestBody?, longitude: RequestBody?): ApiResponse<Unit> =
+    suspend fun postNewStory(token: String, photo: File, description: String, latitude: Float?, longitude: Float?): ApiResponse<Unit> =
         object : RemoteResource<Unit, NewStoryResponse>() {
             override suspend fun dataResponseFailed(stringJson: String): NewStoryResponse =
                 gson.fromJson(stringJson, NewStoryResponse::class.java)
@@ -62,7 +63,11 @@ class RemoteDataSource @Inject constructor(
             override suspend fun createCall(): Response<NewStoryResponse> =
                 apiService.postNewStory(
                     mapOf("Authorization" to "Bearer $token"),
-                    photo, description, latitude, longitude)
+                    photo.convertToMultiPart(),
+                    description.toRequestBody(),
+                    latitude?.toString()?.toRequestBody(),
+                    longitude?.toString()?.toRequestBody()
+                )
         }.result()
 
     suspend fun getListStories(token: String, location: Int? = null): ApiResponse<List<ListStoryItem>> =

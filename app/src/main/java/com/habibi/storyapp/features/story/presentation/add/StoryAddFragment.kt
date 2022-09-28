@@ -106,7 +106,7 @@ class StoryAddFragment : Fragment() {
     private fun checkFieldValidation(file: File? = null) {
         viewModel.checkFieldValidation(
             file,
-            binding.edWrapStoryAddDescription.error,
+            binding.edWrapStoryAddDescription.error?.toString(),
             binding.edAddDescription.text.toString()
         )
     }

@@ -2,11 +2,12 @@ package com.habibi.core.data.source.remote
 
 import com.habibi.core.R
 import com.habibi.core.data.source.remote.network.ApiResponse
+import com.habibi.core.utils.wrapEspressoIdlingResource
 import retrofit2.Response
 
 abstract class RemoteResource<ResultType, ResponseType> {
 
-    suspend fun result(): ApiResponse<ResultType> =
+    suspend fun result(): ApiResponse<ResultType> = wrapEspressoIdlingResource {
         try {
             val response = createCall()
 
@@ -16,30 +17,31 @@ abstract class RemoteResource<ResultType, ResponseType> {
                     if (dataSuccess != null) {
                         when {
                             !isError(dataSuccess) -> {
-                                ApiResponse.Success(
+                                return ApiResponse.Success(
                                     dataSuccess(dataSuccess),
                                     message(dataSuccess)
                                 )
                             }
                             else -> {
-                                ApiResponse.Failed(message(dataSuccess))
+                                return ApiResponse.Failed(message(dataSuccess))
                             }
                         }
                     } else {
-                        errorValue
+                        return errorValue
                     }
                 }
                 in 400..499 -> {
                     val dataFailed = dataResponseFailed(response.errorBody()?.string() ?: "")
-                    ApiResponse.Failed(message(dataFailed))
+                    return ApiResponse.Failed(message(dataFailed))
                 }
                 else -> {
-                    errorValue
+                    return errorValue
                 }
             }
         } catch (e: Exception) {
-            errorValue
+            return errorValue
         }
+    }
 
     protected abstract suspend fun dataResponseFailed(stringJson: String): ResponseType
 

@@ -26,10 +26,10 @@ class LoginViewModel @Inject constructor(
         _fieldValid.value = emailError.isNullOrEmpty() && email.isNotEmpty() && passwordError.isNullOrEmpty() && password.isNotEmpty()
     }
 
-    fun postLogin(email: String, password: String) {
-        _login.value = Resource.Loading()
-        viewModelScope.launch(Dispatchers.IO) {
-            _login.postValue(useCase.postLogin(email, password))
+    fun postLogin(email: String, password: String) = viewModelScope.launch(Dispatchers.IO) {
+        _login.apply {
+            postValue(Resource.Loading())
+            postValue(useCase.postLogin(email, password))
         }
     }
 

@@ -1,0 +1,96 @@
+{
+  "error": false,
+  "message": "Stories fetched successfully",
+  "listStory": [
+    {
+      "id": "story-kEzbT6Kkj4fe1GPW",
+      "name": "budi",
+      "description": "tsster",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1664269978219_CSQgVPgG.jpg",
+      "createdAt": "2022-09-27T09:12:58.220Z",
+      "lat": -6.3149814,
+      "lon": 106.867511
+    },
+    {
+      "id": "story-e5u9WiwzcWaBhTy0",
+      "name": "budsdsdi",
+      "description": "get photo",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1664269201703_jcxPcBJA.jpg",
+      "createdAt": "2022-09-27T09:00:01.708Z",
+      "lat": -6.3149806,
+      "lon": 106.8675094
+    },
+    {
+      "id": "story-ak2qGr7ubRDB-FWQ",
+      "name": "budsdsadi",
+      "description": "bueedianduk",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1664268227897_hs8a3I-n.jpg",
+      "createdAt": "2022-09-27T08:43:47.899Z",
+      "lat": -6.3149811,
+      "lon": 106.8675119
+    },
+    {
+      "id": "story-BEF9vXqWRYEBVYEf",
+      "name": "Nanda Rizka Maulana",
+      "description": "Monggo yang mau maksi mumer",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1664268111123_amfs3lsL.jpg",
+      "createdAt": "2022-09-27T08:41:51.126Z",
+      "lat": -7.2214809,
+      "lon": 112.7314613
+    },
+    {
+      "id": "story-kNmWNtXbiowtbbdZ",
+      "name": "Nanda Rizka Maulana",
+      "description": "free drink guys",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1664267802489_i6Xr93M9.jpg",
+      "createdAt": "2022-09-27T08:36:42.490Z",
+      "lat": -7.2214809,
+      "lon": 112.7314613
+    },
+    {
+      "id": "story-YNjiKcvvhrBuGHl5",
+      "name": "Nanda Rizka Maulana",
+      "description": "test with location",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1664267562173_2ZvddGe-.jpg",
+      "createdAt": "2022-09-27T08:32:42.177Z",
+      "lat": -7.221484,
+      "lon": 112.7314862
+    },
+    {
+      "id": "story-5I2QkEgRaXnkfxWD",
+      "name": "Nanda Rizka Maulana",
+      "description": "test with location",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1664265700549_XxofocPi.jpg",
+      "createdAt": "2022-09-27T08:01:40.551Z",
+      "lat": -7.282305,
+      "lon": 112.74069
+    },
+    {
+      "id": "story--2vz2v3qEe-1AudL",
+      "name": "Yami Yugi",
+      "description": "tes lokasi",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1664258727756_fZzyqpoX.jpg",
+      "createdAt": "2022-09-27T06:05:27.757Z",
+      "lat": -6.59165,
+      "lon": 106.8139565
+    },
+    {
+      "id": "story-Sw2tVnGz0bzPDmYe",
+      "name": "gg@gg.gg",
+      "description": "mantabb",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1664250026307__zOMcwau.jpg",
+      "createdAt": "2022-09-27T03:40:26.309Z",
+      "lat": 37.4220936,
+      "lon": -122.083922
+    },
+    {
+      "id": "story-WO3k6hKR-7EolbZh",
+      "name": "Frank Morris",
+      "description": "do you guys know naruto ? where is he ? i wanna kill him !!!",
+      "photoUrl": "https://story-api.dicoding.dev/images/stories/photos-1664248524919_guve6M_-.jpg",
+      "createdAt": "2022-09-27T03:15:24.921Z",
+      "lat": -6.1239282,
+      "lon": 106.8002702
+    }
+  ]
+}

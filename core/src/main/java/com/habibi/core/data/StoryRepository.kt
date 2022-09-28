@@ -12,12 +12,10 @@ import com.habibi.core.data.source.remote.network.ApiResponse
 import com.habibi.core.data.source.remote.response.ListStoryItem
 import com.habibi.core.domain.repository.IStoryRepository
 import com.habibi.core.domain.story.data.StoryItem
-import com.habibi.core.utils.convertToMultiPart
 import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.flow.Flow
-import okhttp3.RequestBody.Companion.toRequestBody
 
 @Singleton
 class StoryRepository @Inject constructor(
@@ -27,19 +25,10 @@ class StoryRepository @Inject constructor(
     private val database: StoryDatabase
 ): IStoryRepository {
 
-    override suspend fun getUserName(): String =
-        userSessionDataStore.getUserName()
-
     override suspend fun postNewStory(photoFile: File, description: String, latitude: Float?, longitude: Float?): Resource<Unit> =
         object : NetworkResource<Unit, Unit>() {
             override suspend fun createCall(): ApiResponse<Unit> {
-
-                val multipartBody = photoFile.convertToMultiPart()
-                val rbDesc = description.toRequestBody()
-                val rbLat = latitude?.toString()?.toRequestBody()
-                val rbLon = longitude?.toString()?.toRequestBody()
-
-                return remoteDataSource.postNewStory(userSessionDataStore.getToken(), multipartBody, rbDesc, rbLat, rbLon)
+                return remoteDataSource.postNewStory(userSessionDataStore.getToken(), photoFile, description, latitude, longitude)
             }
             override suspend fun onSuccess(data: Unit) {}
         }.result()

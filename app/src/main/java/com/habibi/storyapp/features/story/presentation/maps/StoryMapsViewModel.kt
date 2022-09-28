@@ -24,11 +24,9 @@ class StoryMapsViewModel @Inject constructor(
         getListStoryWithLocation()
     }
 
-    fun getListStoryWithLocation() {
-        _listStoryWithLocation.value = Resource.Loading()
-        viewModelScope.launch(Dispatchers.IO) {
-            _listStoryWithLocation.postValue(useCase.getListStoryWithLocation())
-        }
+    fun getListStoryWithLocation() = viewModelScope.launch(Dispatchers.IO) {
+        _listStoryWithLocation.postValue(Resource.Loading())
+        _listStoryWithLocation.postValue(useCase.getListStoryWithLocation())
     }
 
 }

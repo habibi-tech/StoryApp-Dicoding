@@ -40,10 +40,20 @@ android {
 }
 
 dependencies {
-    debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
-    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
-    implementation "com.squareup.retrofit2:retrofit:2.9.0"
-    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
-    implementation "com.squareup.okhttp3:okhttp:5.0.0-alpha.3"
-    implementation "androidx.datastore:datastore-preferences:1.0.0"
+    def datastore_version = "1.0.0"
+    implementation "androidx.datastore:datastore-preferences:$datastore_version"
+
+    def room_version = "2.4.3"
+    implementation "androidx.room:room-paging:$room_version"
+    implementation "androidx.room:room-common:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    def chucker_version = "3.5.2"
+    debugImplementation "com.github.chuckerteam.chucker:library:$chucker_version"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:$chucker_version"
+
+    def retrofit_version = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
 }
