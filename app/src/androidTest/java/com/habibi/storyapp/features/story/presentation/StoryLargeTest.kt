@@ -108,6 +108,8 @@ class StoryLargeTest {
         onView(withId(R.id.rv_story_list)).check(matches(isDisplayed()))
         onView(withId(R.id.rv_story_list)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
         onView(withId(R.id.iv_detail_photo)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_detail_name)).check(matches(isDisplayed()))
+        onView(withId(R.id.tv_detail_description)).check(matches(isDisplayed()))
     }
 
     @Test

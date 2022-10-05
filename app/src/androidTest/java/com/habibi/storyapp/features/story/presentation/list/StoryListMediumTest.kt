@@ -45,7 +45,7 @@ class StoryListMediumTest {
     }
 
     @Test
-    fun getHeadlineNews_Empty() {
+    fun getDataShow_Empty() {
         launchActivity<StoryActivity>()
 
         val mockResponse = MockResponse()
